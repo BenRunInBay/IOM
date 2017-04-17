@@ -88,7 +88,7 @@ and then calls the IOM.render() function to search for matching items on the pag
 
 ## Google Analytics event tracking
 
-Note: Google Analytics is not required.
+Note: Google Analytics is not required, but if you are using it, then IOM will track clicks as GA events.
 
 Events are automatically added to hyperlinks inside of internal content to track that a click on IOM content has occurred.
 The event calls Analytics.TrackIOMNavigate() for this purpose. Read https://github.com/BenRunInBay/Analytics for more information.
