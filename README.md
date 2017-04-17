@@ -14,21 +14,21 @@ exposed to the public is nothing more than abstract references in the placeholde
 The placeholder is any HTML element with a class of "iom" and a custom data attribute called "data-content-id".
 
 The internal script file is a script file with specific structures identifying the internal content.
-See example above.
+See examples below.
 
-Items inside of the "navLinks" array will be appended to the navigation menu of an ACTv2 page.
+Items inside of the "navLinks" array will be appended to the navigation menu of an ACTv2 page. ScrollV2 navigation is not supported at this time.
 
 The "email", "linkedin" and "twitter" properties are used to automatically display social share options
-to EY users at the top of the ACTv2 center column.
+to EY users at the top of the ACTv2 or ScrollV2 center column.
 
 In some cases, you may have a block of internal content you wish to use on several different pages. You can do this
 by referencing the page name and content id from the placeholder as follows:
 ```
 <section class="iom" data-content-id="PAGE-NAME-1/INTERNAL-CONTENT-ITEM-1"></section>
 ```
-For example:
+For example, repeat the "take-to-client materials" content that is available on the "About-the-study" page.
 ```
-<section class="iom" data-content-id="EY-CFO-program-partnering-for-performance-the-CFO-and-CIO-about-the-study/CFO and CIO take-to-client materials"></section>
+<section class="iom" data-content-id="About-the-study/take-to-client materials"></section>
 ```
 
 ## Getting Started
@@ -67,16 +67,16 @@ var internalContent = {
 	}
 }
 ```
-2. Insert placeholders in the ey.com external page, such as these examples:
+2. Insert placeholders in the external web page, such as these examples:
 ```
 <section class="iom" data-content-id="INTERNAL-CONTENT-ITEM-1"></section>
 <span class="iom" data-content-id="INTERNAL-CONTENT-ITEM-2"></span>
 ```
-3. Add this script reference to your page:
+3. Add this script reference to the external web page:
 ```
 <script src="http://cdn.ey.com/assets/js/ey/iom.min.js" type="text/javascript"></script>
 ```
-4. Call this script from the external ey.com page, replacing the URL with the internal script for your site:
+4. Call this script from the external web page, replacing the URL with the internal script for your site:
 ```
 IOM.init("http://acm.us.na.ey.net/iom/INTERNAL-CONTENT-SCRIPT.js");
 ```
@@ -87,6 +87,8 @@ The IOM.init() function is the only function you will use in most cases. It begi
 and then calls the IOM.render() function to search for matching items on the page and render them.
 
 ## Google Analytics event tracking
+
+Note: Google Analytics is not required.
 
 Events are automatically added to hyperlinks inside of internal content to track that a click on IOM content has occurred.
 The event calls Analytics.TrackIOMNavigate() for this purpose. Read https://github.com/BenRunInBay/Analytics for more information.
