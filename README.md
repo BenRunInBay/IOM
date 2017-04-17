@@ -6,36 +6,37 @@ Integrated Online Messaging (IOM) is the technique of integrating internal conte
 
 1. Place the following in a .js hosted on the intranet server https://acm.us.na.ey.net/iom/
 ```
-	var internalContent = {
-		navLinks: [
-			{ name: "", url: "", area: "", countryCode: "" }
-		],
-		content: {
-			"PAGE-NAME-1": {
-				"INTERNAL-CONTENT-ITEM-1": {
-					html: '<p>Example of internal content shown on an external page</p>'
-				}
+/* Last Updated YYYY-MM-DD by NAME */
+var internalContent = {
+	navLinks: [
+		{ area: "", name: "", url: "" }
+	],
+	content: {
+		"PAGE-NAME-1": {
+			"INTERNAL-CONTENT-ITEM-1": {
+				html: '<p>Example of internal content shown on an external page</p>'
+			}
+		},
+		"PAGE-NAME-2": {
+			"INTERNAL-CONTENT-ITEM-2": {
+				label: "Winning in the Market CHS",
+				url: "http://chs.ey.net/servlet/CHSRenderingServlet?chsReplicaID=852575210049BF89"
 			},
-			"PAGE-NAME-2": {
-                email: {
-                    url: ""
-                },
-                twitter: {
-                    tweet: "",
-                    url: "",
-                    handle: "EYNews"
-                },
-                linkedin: {
-                    post: "",
-                    url: ""
-                },
-                "INTERNAL-CONTENT-ITEM-2": {
-                    label: "Winning in the Market CHS",
-                    url: "http://chs.ey.net/servlet/CHSRenderingServlet?chsReplicaID=852575210049BF89"
-                }
-            }
-		}
+			email: {
+				url: ""
+			},
+			twitter: {
+				tweet: "",
+				url: "",
+				handle: "EYNews"
+			},
+			linkedin: {
+				post: "",
+				url: ""
+			}
+	   }
 	}
+}
 ```
 2. Insert placeholders in the ey.com external page, such as these examples:
 ```
