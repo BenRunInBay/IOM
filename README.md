@@ -7,10 +7,11 @@ Integrated Online Messaging (IOM) is the technique of integrating internal conte
 The external web page contains placedholders that reference internal content. However, the contents of an internally-hosted
 script file contains the actual internal content, including links to intranet sites. Therefore, the "internal information"
 exposed to the public is nothing more than abstract references in the placeholders, such as the following:
-```
+```html
 <section class="iom" data-content-id="INTERNAL-CONTENT-ITEM-1"></section>
 <div class="iom" data-content-id="INTERNAL-VIDEO"></div>
 ```
+
 The placeholder is any HTML element with a class of "iom" and a custom data attribute called "data-content-id".
 
 The internal script file is a script file with specific structures identifying the internal content.
@@ -23,18 +24,19 @@ to EY users at the top of the ACTv2 or ScrollV2 center column.
 
 In some cases, you may have a block of internal content you wish to use on several different pages. You can do this
 by referencing the page name and content id from the placeholder as follows:
-```
+```html
 <section class="iom" data-content-id="PAGE-NAME-1/INTERNAL-CONTENT-ITEM-1"></section>
 ```
+
 For example, repeat the "take-to-client materials" content that is available on the "About-the-study" page.
-```
+```html
 <section class="iom" data-content-id="About-the-study/take-to-client materials"></section>
 ```
 
 ## Getting Started
 
 1. Create an internal content script and place it as a .js hosted on the intranet server https://acm.us.na.ey.net/iom/
-```
+```javascript
 /* Last Updated YYYY-MM-DD by NAME */
 var internalContent = {
 	navLinks: [
@@ -67,17 +69,20 @@ var internalContent = {
 	}
 }
 ```
+
 2. Insert placeholders in the external web page, such as these examples:
-```
+```html
 <section class="iom" data-content-id="INTERNAL-CONTENT-ITEM-1"></section>
 <span class="iom" data-content-id="INTERNAL-CONTENT-ITEM-2"></span>
 ```
+
 3. Add this script reference to the external web page:
-```
+```html
 <script src="http://cdn.ey.com/assets/js/ey/iom.min.js" type="text/javascript"></script>
 ```
+
 4. Call this script from the external web page, replacing the URL with the internal script for your site:
-```
+```javascript
 IOM.init("http://acm.us.na.ey.net/iom/INTERNAL-CONTENT-SCRIPT.js");
 ```
 
