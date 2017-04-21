@@ -1,4 +1,4 @@
-/* Integrated Online Messaging 2017-02-08b
+/* Integrated Online Messaging 2017-04-21b
     Requires: jquery, analytics
 
     DO NOT USE THIS SCRIPT DIRECTLY.
@@ -157,6 +157,8 @@ var IOM = (function() {
                     var contentForThisPage = pvt.getItemByPropName(internalContent.content, IOM.pageName);
                     if (contentForThisPage!=null) {
 
+                        IOM.pageMatches = true;
+
                         var shareHtml = '', social = false;
 
                         // render email this report message
@@ -181,9 +183,9 @@ var IOM = (function() {
                             social = true;
                         }
                         if (shareHtml.length>0) {
-                            var shareHtmlFinal = IOM.shareSectionHtml.replace('{{shareHtml}}'
+                            IOM.shareHtmlFinal = IOM.shareSectionHtmlTpl.replace('{{shareHtml}}'
                                 , IOM.shareNotice+IOM.buildBrandNotice+shareHtml);
-                            $('.socialshare').after(shareHtmlFinal);
+                            $('.socialshare').after(IOM.shareHtmlFinal);
                             $('#EYShareOptions').show();
                             if (social) $('.socialshare').hide();
                         }
@@ -206,7 +208,10 @@ var IOM = (function() {
                                 var pageName = tag.split('/')[0];
                                 var tag = tag.split('/')[1];
                                 contentForThisPage = pvt.getItemByPropName(internalContent.content, pageName);
-                                c = contentForThisPage[tag];
+                                if (contentForThisPage!=null) {
+                                    IOM.otherPageMatches = true;
+                                    c = contentForThisPage[tag];
+                                }
                                 pvt.renderItem($(this), c, tag);
                             } catch (e) {}
                         }
@@ -274,15 +279,18 @@ var IOM = (function() {
         active: true,
         internalTestCompleted: false,
     	isEY: null,
+        pageMatches: null,
+        otherPageMatches: null,
     	page: null, area: null, countryCode: null, internalContentSymbol: "internalContent",
         navRendered: false,
         postRenderCallback: null,
         navNotice: ' <span><br/>(This tab viewable to EY professionals only)</span>',
         shareNotice: '<h3>EY users, share this content:</h3>',
         buildBrandNotice: '<p>Build your personal brand by sharing these market insights with your professional networks.</p>',
-        shareHtml: '<section class="iom" id="EYShareOptions"><div>{{shareHtml}}</div><section>',
+        shareSectionHtmlTpl: '<section class="iom" id="EYShareOptions"><div>{{shareHtml}}</div><section>',
         emailNotice: '<img alt="email button" src="http://cdn.ey.com/assets/images/email-button.png"> Email this report to your contacts</a></p>',
         globalTitleToRemove: ' - EY - Global',
+        shareHtmlFinal: null,
 
 
         /*
