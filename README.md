@@ -106,13 +106,15 @@ that non-EY users do not see any of the elements, including the placeholder.
 
 After calling IOM.init(), check the following in the browser console:
 1. Does the IOM object exist? If not, then you are not referencing the iom.min.js script.
-2. Check IOM.internalTestCompleted in the console. If 'false', then it thinks you are a non-EY user
+2. Check that IOM.active is 'true'.
+3. Check IOM.internalTestCompleted in the console. If 'false', then it thinks you are a non-EY user
     perhaps because it cannot retrieve the internal script file from https://acm.us.na.ey.net/iom/
    Note: for testing, you can place that internal script somewhere else temporarily such as dropbox or your
     localhost.
-3. Check IOM.isEY in the console. If true, then it recognizes you as an EY user.
-4. Check IOM.pageName in the console. This should match the section of content you are trying to display
-    on the page. This doesn't necessarily match the page name you are currently on.
+4. Check IOM.isEY in the console. If true, then it recognizes you as an EY user.
+5. Check IOM.pageName in the console. This should match the section of content you are trying to display
+    on the page. This doesn't necessarily match the page name you are currently on. If it matches, IOM.pageMatches will be 'true'.
+6. If referencing an IOM section from another page, IOM.otherPageMatches will be 'true' if it correctly matches.
 
 ## More documentation
 
